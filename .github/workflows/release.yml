@@ -31,9 +31,9 @@ jobs:
           
           # Use awk to extract the section between the current version header and the next version header
           CHANGELOG=$(awk -v ver="$VERSION" '
-            BEGIN { pattern = "^## \\[" ver "\\]" }
+            BEGIN { pattern = "^## v" ver " -" }
             $0 ~ pattern {found=1; next}
-            found && /^## \[/ {exit}
+            found && /^## / {exit}
             found {print}
           ' CHANGELOG.md)
           
